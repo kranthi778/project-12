@@ -212,3 +212,212 @@ This can lead to:
 
 In this part I learned how websites use Session IDs and cookies to remember who you are. 
 I also learned how attackers can steal Session IDs and how to stop them. This will help me understand how to keep my accounts safe.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Project 12. Session Hijacking
+
+# Part 2 – Cookie Stealing with MITM Attack
+
+## Objective
+
+The goal of this project is to see how a Man-in-the-Middle attack can intercept internet traffic and expose cookies that are sent between a computer and a website in a laboratory setting.
+
+> **Note:** I only did this project in a laboratory environment that was approved for educational purposes.
+
+---
+
+# Cookie Stealing with MITM Attack
+
+In this project the attacker uses a trick called ARP spoofing to get in between the victim and the internet gateway. Once the internet traffic goes through the attackers computer they can look at the internet packets to see the cookies that the website sends.
+
+---
+
+# Lab Environment
+
+| Machine | Role |
+
+
+| Kali Linux | Attacker |
+
+|Ubuntu | Victim |
+
+| Firefox Browser | Web Browser |
+
+| Wireshark | Packet Analysis |
+
+| Cookie Manager | Browser Extension |
+
+| arpspoof | MITM Tool |
+
+---
+
+# User Authentication
+
+The victim logs into a website that's not secure while the attacker logs into a different account on the same website to make it look like a real laboratory setting.
+
+**Victim Credentials**
+
+```
+
+Username: luffy
+
+Password: naruto
+
+```
+
+Website:
+
+```
+
+http://testfire.net
+
+```
+
+![Alt text](screenshots/testfire-login-users.png)
+
+**TestFire User Authentication**
+
+```text
+
+testfire-login-users.png
+
+```
+
+I took a picture of both the attacker and the victim successfully logging into the TestFire website.
+
+---
+
+# Installing Cookie Manager
+
+I installed the Cookie Manager extension on the attackers computer. This extension lets me look at and manage cookies on the browser during the project.
+
+![Alt text](screenshots/firefox-cookie-manager-installation.png)
+
+**Firefox Cookie Manager Installation**
+
+```text
+
+firefox-cookie-manager-installation.png
+
+```
+
+I took a picture of the Firefox Add-ons page showing that Cookie Manager is installed.
+
+---
+
+# Performing ARP Spoofing
+
+I turned on IP forwarding on the attackers computer.
+
+```bash
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+```
+
+Then I started the ARP spoofing attack.
+
+```bash
+
+arpspoof -t <router_ip> <victim_ip>
+
+```
+
+```bash
+
+arpspoof -t <victim_ip> <router_ip>
+
+```
+
+These commands let the attackers computer get in between the victim and the internet gateway so they can see all the internet traffic.
+
+![Alt text](screenshots/arpspoof-mitm-attack.png)
+
+![Alt text](screenshots/arpspoof-mitm-attack2.png)
+
+**ARP Spoofing MITM Attack**
+
+```text
+
+arpspoof-mitm-attack.png
+
+```
+
+I took a picture of all three computer terminals showing IP forwarding and the ARP spoofing commands.
+
+---
+
+# Capturing HTTP Session Cookies
+
+I started Wireshark on the attackers computer. Used a filter to look at the HTTP cookies.
+
+```text
+
+http.cookie
+
+```
+
+Then I refreshed the website on the victims computer to make it send some HTTP requests.
+
+I looked at the packets that Wireshark captured and checked the HTTP section to see the cookies that the website sent.
+
+![Alt text](screenshots/ubuntu-wireshark-http-cookie-capture.png)
+
+**Wireshark HTTP Cookie Capture**
+
+```text
+
+ubuntu-wireshark-http-cookie-capture.png
+
+```
+
+I took a picture of Wireshark showing the HTTP Cookie header in the packet details.
+
+---
+
+# Observation
+
+During this project I saw that:
+
+- The ARP spoofing attack successfully got the attackers computer in between the victim and the internet gateway.
+
+- The attacker could see the HTTP traffic between the victim and the website.
+
+- The attacker could see the cookies that the website sent using HTTP.
+
+- This project showed how session identifiers can be exposed when websites use HTTP.
+
+---
+
+# SOC Analyst Perspective
+
+Security analysts watch for ARP spoofing attacks, strange network behavior and unencrypted HTTP communications that expose session identifiers. They use security measures like HTTPS secure cookies and network monitoring to reduce the risk of session hijacking attacks.
+
+---
+
+# Key Concepts Learned
+
+- Session Hijacking
+
+- Man-in-the-Middle attack
+
+- ARP Spoofing
+
+- HTTP Cookies
+
+- Session Cookies
+
+- Wireshark Packet Analysis
+
+- Cookie-Based Authentication
+
+- Network Traffic Analysis
+
+---
+
+# conclusion
+
+In this project I learned how HTTP session cookies can be seen during a Man-in-the-Middle attack in a controlled laboratory environment. 
+I also learned about the importance of session management using HTTPS for encrypted communication and monitoring techniques to protect websites against session hijacking attacks. 
+Session Hijacking is an issue and Man-, in-the-Middle attacks can be used to steal Session Cookies.
