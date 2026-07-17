@@ -215,7 +215,6 @@ I also learned how attackers can steal Session IDs and how to stop them. This wi
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Project 12. Session Hijacking
 
 # Part 2 – Cookie Stealing with MITM Attack
 
@@ -421,3 +420,130 @@ Security analysts watch for ARP spoofing attacks, strange network behavior and u
 In this project I learned how HTTP session cookies can be seen during a Man-in-the-Middle attack in a controlled laboratory environment. 
 I also learned about the importance of session management using HTTPS for encrypted communication and monitoring techniques to protect websites against session hijacking attacks. 
 Session Hijacking is an issue and Man-, in-the-Middle attacks can be used to steal Session Cookies.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Final Summary
+
+## Project Overview
+
+This project taught me about managing web sessions. Showed me how session cookies can be seen by someone else when they are sent over the internet without any protection.
+
+The project covered the basics of session management. Actually showed me how to do a Man-in-the-Middle attack using ARP spoofing and Wireshark to look at HTTP session cookies. This was all done in a controlled environment.
+
+---
+
+# Topics Covered
+
+- Session
+
+- Session ID
+
+- Cookies
+
+- Session Hijacking
+
+- Session Sniffing
+
+- Man-in-the-Middle
+
+- ARP Spoofing
+
+- HTTP Cookie Analysis
+
+- Session Security
+
+- Countermeasures
+
+---
+
+# Tools Used
+
+- Kali Linux
+
+- Ubuntu
+
+- Firefox Browser
+
+- Wireshark
+
+- arpspoof
+
+- Cookie Manager
+
+---
+
+# Skills Demonstrated
+
+- I learned about managing sessions
+
+- I was able to find session identifiers
+
+- I did ARP spoofing in a controlled lab
+
+- I used Wireshark to capture HTTP traffic
+
+- I looked at HTTP Cookie headers
+
+- I understood the risks of using HTTP without any security
+
+- I applied concepts of security
+
+---
+
+# SOC Analyst Perspective
+
+Session hijacking is often linked to web applications that are not secure using HTTP without encryption and Man-in-the-Middle attacks.
+
+SOC analysts keep an eye out for:
+
+- ARP spoofing
+
+- HTTP traffic
+
+- Sessions behaving strangely
+
+- People trying to log in without permission
+
+- Signs of session hijacking
+
+To reduce these risks organizations:
+
+- Use HTTPS
+
+- Use secure cookies
+
+- Use HttpOnly Cookies
+
+- Use SameSite Cookies
+
+- Divide their networks into segments
+
+- Use systems to detect and prevent intrusions
+
+- Keep a close eye on their networks all the time
+
+---
+
+# Key Takeaways
+
+- Session IDs are like names for users who have logged in.
+
+- Cookies help keep users logged in.
+
+- If HTTP traffic is not encrypted session cookies can be exposed.
+
+- ARP spoofing can be used to do Man-in-the-Middle attacks.
+
+- Wireshark can be used to look at HTTP session traffic.
+
+- Using HTTPS and secure cookies makes it much harder for session hijacking to happen.
+
+---
+
+# conclusion
+
+From this project I got an understanding of managing sessions, HTTP cookies and the risks of using the web without security. I also got to practice analyzing HTTP traffic using Wireshark. 
+Learned how network defenders find and stop session hijacking attacks, in big organizations.
